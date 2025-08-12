@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
-import { fromDayNumber, toDayNumber } from '../../utils/date';
 import assignLanes from '../../assignLanes';
+import { toDayNumber } from '../../utils/date';
+import { formatDateLabel, chooseTickStep } from '../../utils/formatDateLabel';
 import type { RawItem, TimelineItem } from '../../types';
 
 const LANE_HEIGHT = 36;
@@ -37,21 +38,20 @@ export default function Timeline({ items }: TimelineProps) {
   const canvasWidth = Math.max(720, (totalDays + 4) * PIXELS_PER_DAY);
   const canvasHeight = laneCount * LANE_HEIGHT + 40;
 
+  // Adaptive tick density to prevent overlapping labels.
+  const tickStep = chooseTickStep(PIXELS_PER_DAY);
+
   return (
     <div className="timelineViewport">
       <div className="timelineCanvas" style={{ width: canvasWidth, height: canvasHeight }}>
         {/* Top date ruler */}
         <div className="ruler">
-          {Array.from({ length: totalDays + 1 }).map((_, index) => {
-            const day = minDay + index;
-            const label = fromDayNumber(day).slice(5); // "MM-DD"
+          {Array.from({ length: Math.floor(totalDays / tickStep) + 1 }).map((_, i) => {
+            const day = minDay + i * tickStep;
+            const label = formatDateLabel(day);
+            const left = ( (day - minDay) + 2 ) * PIXELS_PER_DAY;
             return (
-              <div
-                key={day}
-                className="rulerTick"
-                style={{ left: (index + 2) * PIXELS_PER_DAY }}
-                title={label}
-              >
+              <div key={day} className="rulerTick" style={{ left }} title={label}>
                 <span>{label}</span>
               </div>
             );
