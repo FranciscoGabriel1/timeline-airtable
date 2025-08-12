@@ -679,45 +679,75 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _client = require("react-dom/client");
-var _clientDefault = parcelHelpers.interopDefault(_client);
-var _timelineItemsJs = require("./timelineItems.js");
-var _timelineItemsJsDefault = parcelHelpers.interopDefault(_timelineItemsJs);
+var _appCss = require("./app.css");
+var _timelineItems = require("./timelineItems");
+var _timelineItemsDefault = parcelHelpers.interopDefault(_timelineItems);
+var _timeline = require("./components/Timeline");
+var _timelineDefault = parcelHelpers.interopDefault(_timeline);
+var _s = $RefreshSig$();
 function App() {
+    _s();
+    const [items] = (0, _react.useState)((0, _timelineItemsDefault.default));
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: "tl-app",
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("header", {
+                className: "tl-header",
                 children: [
-                    "Good luck with your assignment! ",
-                    "\u2728"
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                        children: "Airtable Timeline"
+                    }, void 0, false, {
+                        fileName: "src/index.js",
+                        lineNumber: 14,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                        className: "tl-sub",
+                        children: [
+                            "Itens carregados: ",
+                            items.length
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/index.js",
+                        lineNumber: 15,
+                        columnNumber: 9
+                    }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/index.js",
-                lineNumber: 8,
+                lineNumber: 13,
                 columnNumber: 7
             }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
-                children: [
-                    (0, _timelineItemsJsDefault.default).length,
-                    " timeline items to render"
-                ]
-            }, void 0, true, {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("main", {
+                className: "tl-stage",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _timelineDefault.default), {
+                    items: items
+                }, void 0, false, {
+                    fileName: "src/index.js",
+                    lineNumber: 19,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
                 fileName: "src/index.js",
-                lineNumber: 9,
+                lineNumber: 18,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/index.js",
-        lineNumber: 7,
+        lineNumber: 12,
         columnNumber: 5
     }, this);
 }
+_s(App, "ldftoZYkNF5CSbPa6FQJdKuJNgs=");
 _c = App;
-const root = (0, _clientDefault.default).createRoot(document.getElementById("root"));
-root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(App, {}, void 0, false, {
+// atenção: o id pode ser "app" ou "root", conforme teu index.html.
+// pelo boilerplate do parcel, costuma ser "app".
+const rootEl = document.getElementById('app') || document.getElementById('root');
+(0, _client.createRoot)(rootEl).render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(App, {}, void 0, false, {
     fileName: "src/index.js",
-    lineNumber: 15,
-    columnNumber: 13
+    lineNumber: 28,
+    columnNumber: 27
 }, undefined));
 var _c;
 $RefreshReg$(_c, "App");
@@ -727,7 +757,7 @@ $RefreshReg$(_c, "App");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","react-dom/client":"hrvwu","./timelineItems.js":"FMnwD","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"dVPUn":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","react-dom/client":"hrvwu","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi","./app.css":"j7YWT","./timelineItems":"FMnwD","./components/Timeline":"7PdCx"}],"dVPUn":[function(require,module,exports,__globalThis) {
 'use strict';
 module.exports = require("ee51401569654d91");
 
@@ -24970,110 +25000,7 @@ module.exports = require("ef03b89c8fe2794e");
     /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== 'undefined' && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop === 'function') __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
 })();
 
-},{}],"FMnwD":[function(require,module,exports,__globalThis) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-const timelineItems = [
-    {
-        id: 1,
-        start: "2021-01-14",
-        end: "2021-01-22",
-        name: "Recruit translators"
-    },
-    {
-        id: 2,
-        start: "2021-01-17",
-        end: "2021-01-31",
-        name: "Create lesson plan 1"
-    },
-    {
-        id: 3,
-        start: "2021-02-05",
-        end: "2021-02-13",
-        name: "Translate phrases for lesson 1"
-    },
-    {
-        id: 4,
-        start: "2021-02-07",
-        end: "2021-03-08",
-        name: "Create dark mode design"
-    },
-    {
-        id: 5,
-        start: "2021-02-14",
-        end: "2021-02-22",
-        name: "Recruit copyeditors"
-    },
-    {
-        id: 6,
-        start: "2021-02-18",
-        end: "2021-02-24",
-        name: "Proofread translations for lesson 1"
-    },
-    {
-        id: 7,
-        start: "2021-02-20",
-        end: "2021-02-22",
-        name: "Finalize logo"
-    },
-    {
-        id: 8,
-        start: "2021-02-21",
-        end: "2021-03-22",
-        name: "Implement dark mode"
-    },
-    {
-        id: 9,
-        start: "2021-02-21",
-        end: "2021-02-28",
-        name: "Finalize lesson plan 1"
-    },
-    {
-        id: 10,
-        start: "2021-02-23",
-        end: "2021-02-23",
-        name: "Approve logo"
-    },
-    {
-        id: 11,
-        start: "2021-03-03",
-        end: "2021-03-29",
-        name: "Create lesson plan 2"
-    },
-    {
-        id: 12,
-        start: "2021-03-30",
-        end: "2021-04-08",
-        name: "Translate phrases for lesson 2"
-    },
-    {
-        id: 13,
-        start: "2021-04-01",
-        end: "2021-04-04",
-        name: "Debug mobile notification error"
-    },
-    {
-        id: 14,
-        start: "2021-04-05",
-        end: "2021-04-06",
-        name: "Test debugged mobile notifications"
-    },
-    {
-        id: 15,
-        start: "2021-04-16",
-        end: "2021-04-30",
-        name: "Beta test"
-    },
-    {
-        id: 16,
-        start: "2021-05-01",
-        end: "2021-05-01",
-        name: "Launch day"
-    }
-];
-exports.default = timelineItems;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jnFvT":[function(require,module,exports,__globalThis) {
+},{}],"jnFvT":[function(require,module,exports,__globalThis) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -27379,6 +27306,301 @@ function $da9882e673ac146b$var$ErrorOverlay() {
         editorHandler: $da9882e673ac146b$var$editorHandler
     });
     return null;
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"j7YWT":[function() {},{}],"FMnwD":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+const timelineItems = [
+    {
+        id: 1,
+        start: "2021-01-14",
+        end: "2021-01-22",
+        name: "Recruit translators"
+    },
+    {
+        id: 2,
+        start: "2021-01-17",
+        end: "2021-01-31",
+        name: "Create lesson plan 1"
+    },
+    {
+        id: 3,
+        start: "2021-02-05",
+        end: "2021-02-13",
+        name: "Translate phrases for lesson 1"
+    },
+    {
+        id: 4,
+        start: "2021-02-07",
+        end: "2021-03-08",
+        name: "Create dark mode design"
+    },
+    {
+        id: 5,
+        start: "2021-02-14",
+        end: "2021-02-22",
+        name: "Recruit copyeditors"
+    },
+    {
+        id: 6,
+        start: "2021-02-18",
+        end: "2021-02-24",
+        name: "Proofread translations for lesson 1"
+    },
+    {
+        id: 7,
+        start: "2021-02-20",
+        end: "2021-02-22",
+        name: "Finalize logo"
+    },
+    {
+        id: 8,
+        start: "2021-02-21",
+        end: "2021-03-22",
+        name: "Implement dark mode"
+    },
+    {
+        id: 9,
+        start: "2021-02-21",
+        end: "2021-02-28",
+        name: "Finalize lesson plan 1"
+    },
+    {
+        id: 10,
+        start: "2021-02-23",
+        end: "2021-02-23",
+        name: "Approve logo"
+    },
+    {
+        id: 11,
+        start: "2021-03-03",
+        end: "2021-03-29",
+        name: "Create lesson plan 2"
+    },
+    {
+        id: 12,
+        start: "2021-03-30",
+        end: "2021-04-08",
+        name: "Translate phrases for lesson 2"
+    },
+    {
+        id: 13,
+        start: "2021-04-01",
+        end: "2021-04-04",
+        name: "Debug mobile notification error"
+    },
+    {
+        id: 14,
+        start: "2021-04-05",
+        end: "2021-04-06",
+        name: "Test debugged mobile notifications"
+    },
+    {
+        id: 15,
+        start: "2021-04-16",
+        end: "2021-04-30",
+        name: "Beta test"
+    },
+    {
+        id: 16,
+        start: "2021-05-01",
+        end: "2021-05-01",
+        name: "Launch day"
+    }
+];
+exports.default = timelineItems;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"7PdCx":[function(require,module,exports,__globalThis) {
+var $parcel$ReactRefreshHelpers$7e0e = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+$parcel$ReactRefreshHelpers$7e0e.init();
+var prevRefreshReg = globalThis.$RefreshReg$;
+var prevRefreshSig = globalThis.$RefreshSig$;
+$parcel$ReactRefreshHelpers$7e0e.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "default", ()=>Timeline);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _date = require("../../utils/date");
+var _assignLanes = require("../../assignLanes");
+var _s = $RefreshSig$();
+const LANE_H = 36;
+const PX_PER_DAY = 22;
+function Timeline({ items }) {
+    _s();
+    const enriched = (0, _react.useMemo)(()=>items.map((it)=>({
+                ...it,
+                __start: (0, _date.toDayNumber)(it.startDate),
+                __end: (0, _date.toDayNumber)(it.endDate)
+            })), [
+        items
+    ]);
+    const withLanes = (0, _react.useMemo)(()=>(0, _assignLanes.assignLanes)(items, (0, _date.toDayNumber)), [
+        items
+    ]);
+    const laneCount = 1 + Math.max(0, ...withLanes.map((i)=>i.lane));
+    const minDay = (0, _react.useMemo)(()=>Math.min(...enriched.map((i)=>i.__start)), [
+        enriched
+    ]);
+    const maxDay = (0, _react.useMemo)(()=>Math.max(...enriched.map((i)=>i.__end)), [
+        enriched
+    ]);
+    const totalDays = maxDay - minDay + 1;
+    const width = Math.max(600, (totalDays + 4) * PX_PER_DAY);
+    const height = laneCount * LANE_H + 40;
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: "tl-wrap",
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            className: "tl-canvas",
+            style: {
+                width,
+                height
+            },
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "tl-ruler",
+                    children: Array.from({
+                        length: totalDays + 1
+                    }).map((_, idx)=>{
+                        const day = minDay + idx;
+                        const label = (0, _date.fromDayNumber)(day).slice(5);
+                        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: "tl-tick",
+                            style: {
+                                left: (idx + 2) * PX_PER_DAY
+                            },
+                            title: label,
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                children: label
+                            }, void 0, false, {
+                                fileName: "src/components/Timeline/index.tsx",
+                                lineNumber: 44,
+                                columnNumber: 17
+                            }, this)
+                        }, day, false, {
+                            fileName: "src/components/Timeline/index.tsx",
+                            lineNumber: 38,
+                            columnNumber: 15
+                        }, this);
+                    })
+                }, void 0, false, {
+                    fileName: "src/components/Timeline/index.tsx",
+                    lineNumber: 33,
+                    columnNumber: 9
+                }, this),
+                Array.from({
+                    length: laneCount
+                }).map((_, lane)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "tl-lane",
+                        style: {
+                            top: lane * LANE_H + 32,
+                            height: LANE_H
+                        }
+                    }, lane, false, {
+                        fileName: "src/components/Timeline/index.tsx",
+                        lineNumber: 52,
+                        columnNumber: 11
+                    }, this)),
+                withLanes.map((it)=>{
+                    const left = (it.__start - minDay + 2) * PX_PER_DAY;
+                    const w = Math.max(PX_PER_DAY * (it.__end - it.__start + 1), 14);
+                    const top = it.lane * LANE_H + 32 + 4;
+                    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "tl-item",
+                        style: {
+                            left,
+                            top,
+                            width: w,
+                            height: LANE_H - 8
+                        },
+                        title: `${it.name} (${it.startDate} \u{2013} ${it.endDate})`,
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            className: "tl-item__label",
+                            children: it.name
+                        }, void 0, false, {
+                            fileName: "src/components/Timeline/index.tsx",
+                            lineNumber: 72,
+                            columnNumber: 15
+                        }, this)
+                    }, it.id, false, {
+                        fileName: "src/components/Timeline/index.tsx",
+                        lineNumber: 66,
+                        columnNumber: 13
+                    }, this);
+                })
+            ]
+        }, void 0, true, {
+            fileName: "src/components/Timeline/index.tsx",
+            lineNumber: 31,
+            columnNumber: 7
+        }, this)
+    }, void 0, false, {
+        fileName: "src/components/Timeline/index.tsx",
+        lineNumber: 30,
+        columnNumber: 5
+    }, this);
+}
+_s(Timeline, "pG3L7d+C7qxTLRm0PKs/jJD3hNw=");
+_c = Timeline;
+var _c;
+$RefreshReg$(_c, "Timeline");
+
+  $parcel$ReactRefreshHelpers$7e0e.postlude(module);
+} finally {
+  globalThis.$RefreshReg$ = prevRefreshReg;
+  globalThis.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","../../utils/date":"fpwZE","../../assignLanes":"dYAaM","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"fpwZE":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "parseYMD", ()=>parseYMD);
+parcelHelpers.export(exports, "toDayNumber", ()=>toDayNumber);
+parcelHelpers.export(exports, "fromDayNumber", ()=>fromDayNumber);
+parcelHelpers.export(exports, "clamp", ()=>clamp);
+function parseYMD(ymd) {
+    const [y, m, d] = ymd.split('-').map(Number);
+    return new Date(Date.UTC(y, m - 1, d));
+}
+function toDayNumber(ymd) {
+    return Math.floor(parseYMD(ymd).getTime() / 86400000);
+}
+function fromDayNumber(dayNum) {
+    const ms = dayNum * 86400000;
+    const dt = new Date(ms);
+    const y = dt.getUTCFullYear();
+    const m = String(dt.getUTCMonth() + 1).padStart(2, '0');
+    const d = String(dt.getUTCDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
+}
+function clamp(n, min, max) {
+    return Math.max(min, Math.min(max, n));
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"dYAaM":[function(require,module,exports,__globalThis) {
+/**
+ * Takes an array of items and assigns them to lanes based on start/end dates.
+ * @returns an array of arrays containing items.
+ */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "assignLanes", ()=>assignLanes);
+function assignLanes(items, toDayNumber) {
+    const sortedItems = items.sort((a, b)=>new Date(a.start).getTime() - new Date(b.start).getTime());
+    const lanes = [];
+    function assignItemToLane(item) {
+        for (const lane of lanes)if (new Date(lane[lane.length - 1].end) < new Date(item.start)) {
+            lane.push(item);
+            return;
+        }
+        lanes.push([
+            item
+        ]);
+    }
+    for (const item of sortedItems)assignItemToLane(item);
+    return lanes;
 }
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}]},["5j6Kf","a0t4e"], "a0t4e", "parcelRequire9642", {}, null, null, "http://localhost:1234")
