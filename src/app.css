@@ -1,5 +1,115 @@
+/* ---- Timeline design tokens ---- */
+:root {
+  --tl-bg: #0b1020;
+  --tl-text: #e7ecf7;
+  --tl-muted: #9aa3b2;
+  --tl-surface: #121a33;
+  --tl-border: #223055;
+  --tl-lane: #0e1630;
+  --tl-item: #3a66ff;
+}
+
+/* ---- Global ---- */
+html, body, #root { height: 100%; }
 body {
   margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+  background: var(--tl-bg);
+  color: var(--tl-text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial;
+}
+
+/* ---- App chrome ---- */
+.app {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.appHeader {
+  padding: 16px 20px;
+  background: var(--tl-surface);
+  border-bottom: 1px solid var(--tl-border);
+}
+.appHeaderTitle { margin: 0 0 4px; font-size: 18px; }
+.appHeaderHint  { margin: 0; color: var(--tl-muted); font-size: 13px; }
+
+.appStage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---- Timeline canvas ---- */
+.timelineViewport {
+  /* scroll container */
+  width: 100%;
+  overflow: auto;
+  padding: 12px 0;
+  border-top: 1px solid var(--tl-border);
+  border-bottom: 1px solid var(--tl-border);
+}
+
+.timelineCanvas {
+  /* absolute layout area for lanes/items/ruler */
+  position: relative;
+  margin: 0 auto;
+  background: linear-gradient(180deg, var(--tl-surface), rgba(0,0,0,0) 120px);
+  border: 1px solid var(--tl-border);
+  border-radius: 8px;
+}
+
+/* ---- Ruler (top) ---- */
+.ruler {
+  position: absolute;
+  left: 0; right: 0;
+  height: 28px;
+  border-bottom: 1px dashed var(--tl-border);
+}
+
+.rulerTick {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  font-size: 11px;
+  color: var(--tl-muted);
+  line-height: 1;
+}
+
+.rulerTick::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  width: 1px;
+  height: 10px;
+  background: var(--tl-border);
+}
+
+/* ---- Lanes ---- */
+.lane {
+  position: absolute;
+  left: 0; right: 0;
+  background: var(--tl-lane);
+  border-top: 1px solid rgba(255,255,255,0.03);
+  border-bottom: 1px solid rgba(0,0,0,0.3);
+}
+
+/* ---- Items ---- */
+.item {
+  position: absolute;
+  background: var(--tl-item);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.itemLabel {
+  font-size: 12px;
+  color: #fff;
 }

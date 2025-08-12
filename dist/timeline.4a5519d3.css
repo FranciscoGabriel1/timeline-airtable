@@ -1,6 +1,121 @@
+:root {
+  --tl-bg: #0b1020;
+  --tl-text: #e7ecf7;
+  --tl-muted: #9aa3b2;
+  --tl-surface: #121a33;
+  --tl-border: #223055;
+  --tl-lane: #0e1630;
+  --tl-item: #3a66ff;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
 body {
+  background: var(--tl-bg);
+  color: var(--tl-text);
   margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial;
+}
+
+.app {
+  flex-direction: column;
+  min-height: 100%;
+  display: flex;
+}
+
+.appHeader {
+  background: var(--tl-surface);
+  border-bottom: 1px solid var(--tl-border);
+  padding: 16px 20px;
+}
+
+.appHeaderTitle {
+  margin: 0 0 4px;
+  font-size: 18px;
+}
+
+.appHeaderHint {
+  color: var(--tl-muted);
+  margin: 0;
+  font-size: 13px;
+}
+
+.appStage {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.timelineViewport {
+  border-top: 1px solid var(--tl-border);
+  border-bottom: 1px solid var(--tl-border);
+  width: 100%;
+  padding: 12px 0;
+  overflow: auto;
+}
+
+.timelineCanvas {
+  background: linear-gradient(180deg, var(--tl-surface), #0000 120px);
+  border: 1px solid var(--tl-border);
+  border-radius: 8px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.ruler {
+  border-bottom: 1px dashed var(--tl-border);
+  height: 28px;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.rulerTick {
+  color: var(--tl-muted);
+  font-size: 11px;
+  line-height: 1;
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.rulerTick:after {
+  content: "";
+  background: var(--tl-border);
+  width: 1px;
+  height: 10px;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+}
+
+.lane {
+  background: var(--tl-lane);
+  border-top: 1px solid #ffffff08;
+  border-bottom: 1px solid #0000004d;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.item {
+  background: var(--tl-item);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  border: 1px solid #ffffff40;
+  border-radius: 6px;
+  align-items: center;
+  padding: 0 8px;
+  display: flex;
+  position: absolute;
+  overflow: hidden;
+}
+
+.itemLabel {
+  color: #fff;
+  font-size: 12px;
 }
 /*# sourceMappingURL=timeline.4a5519d3.css.map */

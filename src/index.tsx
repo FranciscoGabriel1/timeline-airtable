@@ -2,21 +2,21 @@ import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './app.css';
 
-import { timelineItems } from './timelineItems';
-
-
+import timelineItems from './timelineItems';
 import Timeline from './components/Timeline';
 import type { RawItem } from './types';
 
 function App() {
   const [items] = useState<RawItem[]>(timelineItems as unknown as RawItem[]);
+
   return (
-    <div className="tl-app">
-      <header className="tl-header">
-        <h1>Airtable Timeline</h1>
-        <p className="tl-sub">Itens carregados: {items.length}</p>
+    <div className="app">
+      <header className="appHeader">
+        <h1 className="appHeaderTitle">Airtable Timeline</h1>
+        <p className="appHeaderHint">Itens carregados: {items.length}</p>
       </header>
-      <main className="tl-stage">
+
+      <main className="appStage">
         <Timeline items={items} />
       </main>
     </div>
