@@ -6,10 +6,11 @@
     "start": "parcel src/index.html --open"
   },
   "dependencies": {
+    "chalk": "^5.5.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "parcel": "^2.0.0"
+    "parcel": "^2.15.4"
   }
 }
