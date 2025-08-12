@@ -17,7 +17,7 @@ function App() {
       </header>
 
       <main className="appStage">
-        <Timeline items={items} />
+        <Timeline items={items} controlsAlign='center'/>
       </main>
     </div>
   );

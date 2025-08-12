@@ -6,9 +6,10 @@
   --tl-border: #223055;
   --tl-lane: #0e1630;
   --tl-item: #3a66ff;
+  --app-header-h: 60px;
 }
 
-html, body, #root {
+html, body, #root, #app {
   height: 100%;
 }
 
@@ -28,7 +29,10 @@ body {
 .appHeader {
   background: var(--tl-surface);
   border-bottom: 1px solid var(--tl-border);
+  min-height: var(--app-header-h);
+  align-content: center;
   padding: 16px 20px;
+  display: grid;
 }
 
 .appHeaderTitle {
@@ -47,6 +51,59 @@ body {
   justify-content: center;
   align-items: center;
   display: flex;
+}
+
+.zoomContainer {
+  top: calc(var(--app-header-h)  + 8px);
+  z-index: 20;
+  pointer-events: none;
+  width: 100%;
+  display: flex;
+  position: fixed;
+  left: 0;
+  right: 0;
+}
+
+.zoomContainer--right {
+  justify-content: flex-end;
+  padding-right: 16px;
+}
+
+.zoomContainer--center {
+  justify-content: center;
+}
+
+.zoomBar {
+  pointer-events: auto;
+  border: 1px solid var(--tl-border);
+  background: #121a33e6;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  display: flex;
+  box-shadow: 0 4px 18px #00000059;
+}
+
+.zoomBtn {
+  background: var(--tl-surface);
+  color: var(--tl-text);
+  border: 1px solid var(--tl-border);
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+
+.zoomBtn:hover {
+  filter: brightness(1.1);
+}
+
+.zoomLevel {
+  color: var(--tl-muted);
+  text-align: center;
+  min-width: 44px;
+  font-size: 12px;
 }
 
 .timelineViewport {

@@ -1,4 +1,4 @@
-/* ---- Timeline design tokens ---- */
+/* ---- Design tokens ---- */
 :root {
   --tl-bg: #0b1020;
   --tl-text: #e7ecf7;
@@ -7,10 +7,13 @@
   --tl-border: #223055;
   --tl-lane: #0e1630;
   --tl-item: #3a66ff;
+
+  /* header height used to offset fixed controls */
+  --app-header-h: 60px;
 }
 
 /* ---- Global ---- */
-html, body, #root { height: 100%; }
+html, body, #root, #app { height: 100%; }
 body {
   margin: 0;
   background: var(--tl-bg);
@@ -29,7 +32,12 @@ body {
   padding: 16px 20px;
   background: var(--tl-surface);
   border-bottom: 1px solid var(--tl-border);
+  /* keep header around this height so controls align nicely */
+  min-height: var(--app-header-h);
+  display: grid;
+  align-content: center;
 }
+
 .appHeaderTitle { margin: 0 0 4px; font-size: 18px; }
 .appHeaderHint  { margin: 0; color: var(--tl-muted); font-size: 13px; }
 
@@ -40,9 +48,48 @@ body {
   justify-content: center;
 }
 
+/* ---- Zoom controls alignment wrapper (FIXED overlay) ---- */
+.zoomContainer {
+  position: fixed;
+  top: calc(var(--app-header-h) + 8px);
+  left: 0;
+  right: 0;
+  z-index: 20;
+  width: 100%;
+  /* allow clicks only on the toolbar itself */
+  pointer-events: none;
+  display: flex;
+}
+.zoomContainer--right  { justify-content: flex-end; padding-right: 16px; }
+.zoomContainer--center { justify-content: center; }
+
+/* ---- Zoom controls ---- */
+.zoomBar {
+  pointer-events: auto;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  background: rgba(18, 26, 51, 0.9);
+  border: 1px solid var(--tl-border);
+  border-radius: 8px;
+  padding: 6px 10px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.35);
+}
+
+.zoomBtn {
+  background: var(--tl-surface);
+  color: var(--tl-text);
+  border: 1px solid var(--tl-border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+.zoomBtn:hover { filter: brightness(1.1); }
+.zoomLevel { font-size: 12px; color: var(--tl-muted); min-width: 44px; text-align: center; }
+
 /* ---- Timeline canvas ---- */
 .timelineViewport {
-  /* scroll container */
   width: 100%;
   overflow: auto;
   padding: 12px 0;
@@ -51,7 +98,6 @@ body {
 }
 
 .timelineCanvas {
-  /* absolute layout area for lanes/items/ruler */
   position: relative;
   margin: 0 auto;
   background: linear-gradient(180deg, var(--tl-surface), rgba(0,0,0,0) 120px);
@@ -59,7 +105,7 @@ body {
   border-radius: 8px;
 }
 
-/* ---- Ruler (top) ---- */
+/* ---- Ruler ---- */
 .ruler {
   position: absolute;
   left: 0; right: 0;

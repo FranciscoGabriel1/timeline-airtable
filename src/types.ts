@@ -5,10 +5,9 @@ export type RawItem =
 export type TimelineItem = {
   id: string | number;
   name: string;
-  startDate: string; // normalizado
-  endDate: string;   // normalizado
-  // campos auxiliares internos
-  __start?: number;
-  __end?: number;
-  lane?: number;
+  startDate: string; // normalized
+  endDate: string;   // normalized
+  __start?: number;  // internal day-number start
+  __end?: number;    // internal day-number end
+  lane?: number;     // computed lane index
 };
