@@ -1,22 +1,24 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import assignLanes from '../../assignLanes';
-import { toDayNumber } from '../../utils/date';
+import { fromDayNumber, toDayNumber } from '../../utils/date';
 import { formatDateLabel, chooseTickStep } from '../../utils/formatDateLabel';
 import ZoomControls from '../ZoomControls';
-import type { RawItem, TimelineItem } from '../../types';
+import TimelineItem from '../../components/TimelineItem';
+import type { RawItem, TimelineItem as TItem } from '../../types';
 
 const LANE_HEIGHT = 36;
 const BASE_PIXELS_PER_DAY = 22;
 
 type TimelineProps = {
   items: RawItem[];
+  onItemsChange?: (next: RawItem[]) => void;
   /** Where to place the zoom controls: 'right' (default) or 'center'. */
   controlsAlign?: 'right' | 'center';
 };
 
-export default function Timeline({ items, controlsAlign = 'right' }: TimelineProps) {
+export default function Timeline({ items, onItemsChange, controlsAlign = 'right' }: TimelineProps) {
   // Normalize incoming items to a consistent shape.
-  const normalized: TimelineItem[] = useMemo(
+  const normalized: TItem[] = useMemo(
     () =>
       items.map((item) => {
         const start = (item as any).startDate ?? (item as any).start;
@@ -43,7 +45,6 @@ export default function Timeline({ items, controlsAlign = 'right' }: TimelinePro
     if (!el) return;
 
     const onWheel = (e: WheelEvent) => {
-      // Ctrl + wheel to zoom; normal wheel scroll remains default.
       if (!e.ctrlKey) return;
       e.preventDefault();
       setZoom((z) => {
@@ -73,9 +74,24 @@ export default function Timeline({ items, controlsAlign = 'right' }: TimelinePro
   // Adaptive ruler density based on current zoom.
   const tickStep = chooseTickStep(PIXELS_PER_DAY);
 
+  // Commit changes from a single item (drag/resize/edit)
+  const commitItemChange = (next: { id: string | number; startDay: number; endDay: number; name?: string }) => {
+    const updated = items.map((raw) => {
+      if ((raw as any).id !== next.id) return raw;
+      const name = (raw as any).name;
+      return {
+        id: (raw as any).id,
+        name: next.name ?? name,
+        startDate: fromDayNumber(next.startDay),
+        endDate: fromDayNumber(next.endDay),
+      };
+    });
+    onItemsChange?.(updated);
+  };
+
   return (
     <>
-      {/* Wrapper controls alignment: right (default) or center */}
+      {/* Zoom controls (top overlay) */}
       <div className={`zoomContainer zoomContainer--${controlsAlign}`}>
         <ZoomControls zoom={zoom} onZoomIn={zoomIn} onZoomOut={zoomOut} onReset={zoomReset} />
       </div>
@@ -106,26 +122,17 @@ export default function Timeline({ items, controlsAlign = 'right' }: TimelinePro
             />
           ))}
 
-          {/* Items */}
-          {itemsWithLanes.map((it) => {
-            const left = ((it.__start! - minDay) + 2) * PIXELS_PER_DAY;
-            const width = Math.max(PIXELS_PER_DAY * (it.__end! - it.__start! + 1), 14);
-            const top = (it.lane ?? 0) * LANE_HEIGHT + 32 + 4;
-
-            return (
-              <div
-                key={it.id}
-                className="item"
-                style={{ left, top, width, height: LANE_HEIGHT - 8 }}
-                title={`${it.name} (${it.startDate} – ${it.endDate})`}
-                role="button"
-                tabIndex={0}
-                aria-label={`${it.name}: ${it.startDate} to ${it.endDate}`}
-              >
-                <span className="itemLabel">{it.name}</span>
-              </div>
-            );
-          })}
+          {/* Items (interactive) */}
+          {itemsWithLanes.map((it) => (
+            <TimelineItem
+              key={it.id}
+              item={it}
+              minDay={minDay}
+              pixelsPerDay={PIXELS_PER_DAY}
+              laneHeight={LANE_HEIGHT}
+              onCommit={commitItemChange}
+            />
+          ))}
         </div>
       </div>
     </>

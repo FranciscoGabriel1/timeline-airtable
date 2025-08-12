@@ -175,4 +175,45 @@ body {
   color: #fff;
   font-size: 12px;
 }
+
+.item {
+  cursor: grab;
+  transition: box-shadow .12s;
+}
+
+.item.isDragging, .item:active {
+  cursor: grabbing;
+  box-shadow: 0 4px 16px #00000059;
+}
+
+.itemLabelWrap {
+  flex: 1;
+  min-width: 0;
+}
+
+.inlineEdit {
+  color: #fff;
+  background: #ffffff14;
+  border-radius: 4px;
+  outline: none;
+  padding: 0 4px;
+}
+
+.itemHandle {
+  background: none;
+  width: 6px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+}
+
+.itemHandle--left {
+  cursor: ew-resize;
+  left: 0;
+}
+
+.itemHandle--right {
+  cursor: ew-resize;
+  right: 0;
+}
 /*# sourceMappingURL=timeline.4a5519d3.css.map */

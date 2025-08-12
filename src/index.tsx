@@ -7,7 +7,7 @@ import Timeline from './components/Timeline';
 import type { RawItem } from './types';
 
 function App() {
-  const [items] = useState<RawItem[]>(timelineItems as unknown as RawItem[]);
+  const [items, setItems] = useState<RawItem[]>(timelineItems as unknown as RawItem[]);
 
   return (
     <div className="app">
@@ -17,7 +17,7 @@ function App() {
       </header>
 
       <main className="appStage">
-        <Timeline items={items} controlsAlign='center'/>
+        <Timeline items={items} onItemsChange={setItems} controlsAlign="right" />
       </main>
     </div>
   );
